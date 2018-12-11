@@ -1,0 +1,27 @@
+{
+  "name": "mongo-web-scraper",
+  "version": "1.0.0",
+  "description": "Web Scraper App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mwomack117/Mongo-Web-Scraper.git"
+  },
+  "author": "Michael Womack",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mwomack117/Mongo-Web-Scraper/issues"
+  },
+  "homepage": "https://github.com/mwomack117/Mongo-Web-Scraper#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^5.3.15",
+    "path": "^0.12.7"
+  }
+}
