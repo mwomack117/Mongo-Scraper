@@ -11,7 +11,7 @@ var exphbs = require("express-handlebars")
 // Require all models
 // var db = require("./models");
 
-var PORT = 8080;
+var PORT = process.env.PORT || 8080;
 
 // Initialize Express
 var app = express();
@@ -27,7 +27,6 @@ app.use(express.static("public"));
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
-
 mongoose.connect(MONGODB_URI);
 
 // Handlebars
