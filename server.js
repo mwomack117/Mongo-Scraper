@@ -26,9 +26,9 @@ app.use(express.static("public"));
 // mongoose.connect("mongodb://localhost/mongoHeadlines", { useNewUrlParser: true });
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines"
 
-mongoose.connect(MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines", { useNewUrlParser: true });
 
 // Handlebars
 app.engine("handlebars", exphbs({ defaultLayout: "main"}));
