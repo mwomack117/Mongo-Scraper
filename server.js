@@ -1,6 +1,6 @@
 var express = require("express");
 var mongoose = require("mongoose");
-var path = require("path")
+
 // Our scraping tools
 // Axios is a promised-based http library, similar to jQuery's Ajax method
 // It works on the client and on the server
@@ -30,7 +30,7 @@ app.engine("handlebars", exphbs({ defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
 
-// Routes
+// -------- Routes ------------- //
 
 app.get("/", function (req, res) {
   
@@ -46,20 +46,33 @@ app.get("/", function (req, res) {
     });
 });
 
-// A GET route for scraping the echoJS website
+// Route for grabbing saved articles
+app.get("/saved", function (req, res) {
+  // Grab every document in the Articles collection
+  db.Article.find({})
+    .then(function (dbArticle) {
+      // If we were able to successfully find Articles, send them back to the client
+      res.render("saved", {items: dbArticle});
+    })
+    .catch(function (err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
+});
+
+// A GET route for scraping the buzzfeed website
 app.get("/scrape", function (req, res) {
   // First, we grab the body of the html with axios
   axios.get("https://www.buzzfeed.com/").then(function (response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
-    var resultArray = [];
+    // var resultArray = [];
 
     // Now, we grab every h2 within a 'link-gray' class, and do the following:
     $("h2.link-gray").each(function (i, element) {
       // Save an empty result object
       var result = {};
 
-    
       // Add the text for titles and summary 'p' and href of every link, and save them as properties of the result object
       result.title = $(this)
         .text();
@@ -69,9 +82,6 @@ app.get("/scrape", function (req, res) {
       result.link = $(this)
         .parents("a")
         .attr("href");
-
-      resultArray.push(result);
-
 
       // Create a new Article using the `result` object built from scraping
       db.Article.create(result)
@@ -89,7 +99,6 @@ app.get("/scrape", function (req, res) {
 
     // If we were able to successfully scrape and save an Article, send a message to the client
     res.send("Scrape Complete");
-    // res.send(resultArray);
   });
 });
 
@@ -107,11 +116,12 @@ app.get("/articles", function (req, res) {
     });
 });
 
+
 // Clear data
 app.get('/clear', function (req, res) {
   db.Article.remove({})
     .then(function (result) {
-      // If we were able to successfully find Articles, send them back to the client
+      // If successful, empty object will be returned
       res.json(result);
     })
     .catch(function (err) {

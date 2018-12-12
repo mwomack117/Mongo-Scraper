@@ -1,16 +1,37 @@
-.navbar {
-  margin-bottom: 0;
+body {
+  font-family: 'Karla', sans-serif;
 }
 
-.jumbotron {
+.navbar {
+  margin-bottom: 0;
+  color: white;
+}
+
+#brand-override {
+  font-size: 26px;
+  font-weight: 600;
+  color: white;
+  font-family: 'Karla', sans-serif;
+}
+
+.nav-item {
+  margin: 0 5px;
+}
+
+.navbar-nav li a {
+  color: white;
+}
+
+.jumbotron-fluid {
   position: relative;
   width: 100%;
   height: 600px;
   padding: 0;
-  box-shadow: 10px 5px 20px 2px lightslategrey;
+  margin-bottom: 15px;
+  box-shadow: 0 5px 15px 0px lightslategrey;
 }
 
-/* .jumbotron .overlay {
+.jumbotron-fluid .overlay {
   position: absolute;
   top: 0;
   right: 0;
@@ -20,31 +41,51 @@
   background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
   linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
   linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
-  opacity: 0.5;
-} */
+  opacity: 0.7;
+}
 
-.jumbotron .background-image {
+.jumbotron-fluid .background-image {
   padding: 0;
-  height: 100%;
+  height: 600px;
+  width: 100%;
   background-image: url("../images/buzzfeed-cat-2.jpg");
   background-size: cover;
   }
 
-  .jumbotron .caption {
+  .jumbotron-fluid .caption {
     position: absolute;
-    top: 20%;
+    top: 33%;
     width: 100%;
     text-align: center;
-    color: darkgray;
+    color: white;
+    font-family: 'Karla', sans-serif;
   }
 
-
-  @media (min-width: 576px) {
-.jumbotron {
-  padding: 0;
+  .jumbotron-fluid .caption h1 {
+    font-size: 3em;
+    font-weight: 600;
   }
-}
+
+  .jumbotron-fluid .caption h4 {
+    font-size: 1.75em;
+    font-weight: 500;
+  }
+
 
 .card {
   margin-bottom: 15px;
+}
+
+.card-header a {
+  color: seagreen;
+  font-family: 'Karla', sans-serif;
+}
+
+a.save-btn {
+  color: white;
+}
+
+.card-body{
+  font-weight: 500;
+  opacity: 0.8;
 }

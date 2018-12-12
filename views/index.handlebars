@@ -1,41 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
 
-<body>
+  <nav class="navbar navbar-expand-lg bg-dark">
+    <a class="navbar-brand" id="brand-override" href="#">Mongo Scraper</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon" id="fuck-you"></span>
+  </button>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Mongo Scraper</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/saved">Saved Articles</a>
         </li>
         <li class="nav-item">
-          <a class="btn btn-danger scrape-new">SCRAPE NEW ARTICLES!</a>
+          <a class="btn btn-warning scrape-new">SCRAPE NEW ARTICLES!</a>
         </li>
         <li class="nav-item">
-          <a class="btn btn-danger clear">CLEAR ARTICLES!</a>
+          <a class="btn btn-warning clear">CLEAR ARTICLES!</a>
         </li>
       </ul>
     </div>
   </nav>
 
-  <div class="jumbotron text-center">
+  <div class="jumbotron-fluid text-center">
     <div class="overlay"></div>
     <div class="background-image"></div>
     <div class="caption">
@@ -56,6 +45,7 @@
 
           </a>
         </h3>
+        <a href="#" class="btn btn-primary save-btn">Save Article</a>
       </div>
       <div class="card-body">
         {{summary}}
@@ -64,8 +54,38 @@
     </div>
     {{/each}}
   </div>
+<script>
+
+  $(".clear").on("click", function(req, res) {
+  console.log("button working")
+
+  $.ajax({
+    method: "GET",
+    url: "/clear"
+  })
+  .then(function(data) {
+    window.location.reload();
+  })
+  
+})
+
+$(".scrape-new").on("click", function(req, res) {
+  console.log("button working")
+
+  $.ajax({
+    method: "GET",
+    url: "/scrape"
+  })
+  .then(function(data) {
+    window.location.reload();
+  })
+  
+})
 
 
-</body>
+</script>
 
-</html>
+  
+  
+
+
