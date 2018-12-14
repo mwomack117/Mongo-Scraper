@@ -1,3 +1,5 @@
+///// ALL OF OUR ROUTES ///////
+
 var express = require("express");
 
 // Our scraping tools
@@ -38,20 +40,31 @@ router.get("/saved", function (req, res) {
     });
 });
 
-/// NEED TO FIGURE out how to change {saved: true}
-// router.post("/saved/:id", function (req, res) {
-//   // Grab every document in the Articles collection
-//   db.Article.find({ saved: true })
-//     .then(function (dbArticle) {
-//       return db.Article.findOneAndUpdate({ _id: req.params.id }) 
-//       // If we were able to successfully find Articles, send them back to the client
-//       // res.render("saved", { items: dbArticle });
-//     })
-//     .catch(function (err) {
-//       // If an error occurred, send it to the client
-//       res.json(err);
-//     });
-// });
+// Update and save article to 'Saved Page'
+router.post("/saved/:id", function (req, res) {
+  // Grab every document in the Articles collection
+  db.Article.findOneAndUpdate({ _id: req.params.id }, {$set: {saved: true}}, {new: true}, function(err, doc) {
+    console.log(doc);
+    res.json(doc);
+  })
+  .catch(function (err) {
+    // If an error occurred, send it to the client
+    res.json(err);
+  });
+});
+
+// Update and delete a saved article
+router.post("/delete/:id", function (req, res) {
+  // Grab every document in the Articles collection
+  db.Article.findOneAndUpdate({ _id: req.params.id }, {$set: {saved: false}}, {new: true}, function(err, doc) {
+    console.log(doc);
+    res.json(doc);
+  })
+  .catch(function (err) {
+    // If an error occurred, send it to the client
+    res.json(err);
+  });
+});
 
 // A GET route for scraping the buzzfeed website
 router.get("/scrape", function (req, res) {
@@ -95,7 +108,7 @@ router.get("/scrape", function (req, res) {
   });
 });
 
-// Clear data
+// Clear database and articles
 router.get('/clear', function (req, res) {
   db.Article.remove({})
     .then(function (result) {

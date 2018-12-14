@@ -1,5 +1,5 @@
 
-
+// Clear all articles
 $(".clear").on("click", function (req, res) {
   console.log("button working")
 
@@ -13,6 +13,7 @@ $(".clear").on("click", function (req, res) {
 
 })
 
+// Scrap Articles from Buzzfeed
 $(".scrape-new").on("click", function (req, res) {
   console.log("button working")
 
@@ -26,21 +27,34 @@ $(".scrape-new").on("click", function (req, res) {
 
 })
 
-/// NEED TO FIGURE out how to change {saved: true}
-// $(".save-btn").on("click", function () {
-//   var thisId = $(this).attr("data-id");
-//   console.log("button test")
+// Click event to save article
+$(".save-btn").on("click", function () {
+  var thisId = $(this).attr("data-id");
+  console.log("button test")
 
-//   $.ajax({
-//     method: "POST",
-//     url: "/saved",
-//     data: {
-//       saved: true
-//     }
-//   })
-//     .then(function (data) {
-//       console.log(data);
-//     })
+  $.ajax({
+    method: "POST",
+    url: "/saved/" + thisId
+  })
+    .then(function (data) {
+      console.log(data);
+    })
 
-// })
+})
+
+// Click event to delete article
+$(".delete-btn").on("click", function () {
+  var thisId = $(this).attr("data-id");
+  console.log("button test")
+
+  $.ajax({
+    method: "POST",
+    url: "/delete/" + thisId
+  })
+    .then(function (data) {
+      console.log(data);
+      window.location.reload();
+    })
+    
+})
 
