@@ -58,3 +58,22 @@ $(".delete-btn").on("click", function () {
     
 })
 
+// Click event to save node
+$(".note-save").on("click", function () {
+  var thisId = $(this).attr("data-id");
+  console.log("note test")
+
+  $.ajax({
+    method: "POST",
+    url: "/articles/" + thisId,
+    data: {
+      title: $("#note-title").val(),
+      body: $("#note-body").val()
+    }
+  })
+    .then(function (data) {
+      console.log(data);
+    })
+
+})
+ 

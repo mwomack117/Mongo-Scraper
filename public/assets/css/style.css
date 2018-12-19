@@ -61,6 +61,7 @@ body {
   width: 100%;
   background-image: url("../images/buzzfeed-cat-2.jpg");
   background-size: cover;
+  background-position: 50%;
   }
 
   .jumbotron-fluid .caption {
